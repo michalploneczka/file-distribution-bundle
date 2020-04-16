@@ -6,28 +6,30 @@ use Abc\Bundle\FileDistributionBundle\Entity\DefinitionManager;
 use Doctrine\Common\Persistence\Mapping\ClassMetadata;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\Persistence\ObjectRepository;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 
-class DefinitionManagerTest extends \PHPUnit_Framework_TestCase
+class DefinitionManagerTest extends TestCase
 {
 
     /** @var string */
     private $class;
-    /** @var ClassMetadata|\PHPUnit_Framework_MockObject_MockObject */
+    /** @var ClassMetadata|MockObject */
     private $classMetaData;
-    /** @var ObjectManager|\PHPUnit_Framework_MockObject_MockObject */
+    /** @var ObjectManager|MockObject */
     private $objectManager;
-    /** @var ObjectRepository|\PHPUnit_Framework_MockObject_MockObject */
+    /** @var ObjectRepository|MockObject */
     private $repository;
     /** @var DefinitionManager */
     private $subject;
 
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->class         = 'Abc\Bundle\FileDistributionBundle\Entity\Definition';
-        $this->classMetaData = $this->getMock('Doctrine\Common\Persistence\Mapping\ClassMetadata');
+        $this->classMetaData = $this->createMock('Doctrine\Common\Persistence\Mapping\ClassMetadata');
         $this->objectManager = $this->getMockBuilder('Doctrine\ORM\EntityManager')->disableOriginalConstructor()->getMock();
-        $this->repository    = $this->getMock('Doctrine\Common\Persistence\ObjectRepository');
+        $this->repository    = $this->createMock('Doctrine\Common\Persistence\ObjectRepository');
 
         $this->objectManager->expects($this->any())
             ->method('getClassMetadata')

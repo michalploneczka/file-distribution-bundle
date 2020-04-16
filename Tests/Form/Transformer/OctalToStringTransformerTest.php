@@ -4,8 +4,9 @@ namespace Abc\Bundle\FileDistributionBundle\Tests\Form\Transformer;
 
 
 use Abc\Bundle\FileDistributionBundle\Form\Transformer\OctalToStringTransformer;
+use PHPUnit\Framework\TestCase;
 
-class OctalToStringTransformerTest extends \PHPUnit_Framework_TestCase
+class OctalToStringTransformerTest extends TestCase
 {
     /** @var OctalToStringTransformer */
     protected $subject;
@@ -48,12 +49,11 @@ class OctalToStringTransformerTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($this->subject->reverseTransform($value));
     }
 
-    /**
-     * @expectedException \Symfony\Component\Form\Exception\TransformationFailedException
-     * @expectedExceptionMessage Expected a string.
-     */
     public function testReverseTransformWithNonStringValueThrowsAnException()
     {
+        $this->getExpectedException("\Symfony\Component\Form\Exception\TransformationFailedException");
+        $this->expectExceptionMessage("Expected a string.");
+
         $this->subject->reverseTransform(123);
     }
 

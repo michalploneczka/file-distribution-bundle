@@ -4,13 +4,15 @@
 namespace Abc\Bundle\FileDistributionBundle\Tests\Model;
 
 use Abc\Bundle\FileDistributionBundle\Model\DefinitionManager;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 
-class DefinitionManagerTest extends \PHPUnit_Framework_TestCase {
+class DefinitionManagerTest extends TestCase {
 
-    /** @var DefinitionManager|\PHPUnit_Framework_MockObject_MockObject */
+    /** @var DefinitionManager|MockObject */
     protected $subject;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->subject = $this->getMockForAbstractClass('Abc\Bundle\FileDistributionBundle\Model\DefinitionManager');
     }
@@ -27,4 +29,3 @@ class DefinitionManagerTest extends \PHPUnit_Framework_TestCase {
         $this->assertInstanceOf('Abc\Bundle\FileDistributionBundle\Entity\Definition', $entity);
     }
 }
- 

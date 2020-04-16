@@ -4,17 +4,19 @@ namespace Abc\Bundle\FileDistributionBundle\Listener;
 
 
 use Abc\Bundle\FileDistributionBundle\Entity\FileLifecycleInterface;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class FileLifecycleListenerTest extends \PHPUnit_Framework_TestCase
+class FileLifecycleListenerTest extends TestCase
 {
-    /** @var \Doctrine\ORM\Event\LifecycleEventArgs|\PHPUnit_Framework_MockObject_MockObject */
+    /** @var \Doctrine\ORM\Event\LifecycleEventArgs|MockObject */
     protected $args;
-    /** @var \Abc\Filesystem\FilesystemInterface|\PHPUnit_Framework_MockObject_MockObject */
+    /** @var \Abc\Filesystem\FilesystemInterface|MockObject */
     protected $filesystem;
-    /** @var FileLifecycleInterface|\PHPUnit_Framework_MockObject_MockObject */
+    /** @var FileLifecycleInterface|MockObject */
     protected $entity;
     /** @var LoggerInterface */
     protected $logger;
@@ -27,9 +29,9 @@ class FileLifecycleListenerTest extends \PHPUnit_Framework_TestCase
     public function setupSubject()
     {
         $this->args       = $this->getMockBuilder('\Doctrine\ORM\Event\LifecycleEventArgs')->disableOriginalConstructor()->getMock();
-        $this->filesystem = $this->getMock('\Abc\Filesystem\FilesystemInterface');
+        $this->filesystem = $this->createMock('\Abc\Filesystem\FilesystemInterface');
         $this->logger     = new NullLogger();
-        $this->entity     = $this->getMock('\Abc\Bundle\FileDistributionBundle\Entity\FileLifecycleInterface');
+        $this->entity     = $this->createMock('\Abc\Bundle\FileDistributionBundle\Entity\FileLifecycleInterface');
         $this->subject    = new FileLifecycleListener($this->filesystem, $this->logger);
     }
 
@@ -56,7 +58,7 @@ class FileLifecycleListenerTest extends \PHPUnit_Framework_TestCase
 
     public function testPostLoad()
     {
-        $definition = $this->getMock('\Abc\Filesystem\DefinitionInterface');
+        $definition = $this->createMock('\Abc\Filesystem\DefinitionInterface');
         $this->filesystem->expects($this->once())
             ->method('getDefinition')
             ->willReturn($definition);
@@ -102,4 +104,3 @@ class FileLifecycleListenerTest extends \PHPUnit_Framework_TestCase
 
 
 }
- 

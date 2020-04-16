@@ -5,10 +5,11 @@ namespace Abc\Bundle\FileDistributionBundle\Tests\DependencyInjection;
 
 
 use Abc\Bundle\FileDistributionBundle\DependencyInjection\AbcFileDistributionExtension;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
-class AbcFileDistributionExtensionTest extends \PHPUnit_Framework_TestCase {
+class AbcFileDistributionExtensionTest extends TestCase {
 
     /**
      * @var ContainerBuilder
@@ -36,7 +37,7 @@ class AbcFileDistributionExtensionTest extends \PHPUnit_Framework_TestCase {
     private $defaultFormat;
 
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->container = new ContainerBuilder();
         $this->container->setParameter('kernel.bundles', array('AbcFileDistributionBundle' => true));
@@ -50,7 +51,7 @@ class AbcFileDistributionExtensionTest extends \PHPUnit_Framework_TestCase {
         $this->defaultFormat = null;
     }
 
-    public function tearDown()
+    protected function tearDown(): void
     {
         unset($this->container, $this->extension);
     }

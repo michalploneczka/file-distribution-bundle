@@ -20,17 +20,17 @@
         }
     ],
     "require": {
-        "php": ">=5.5.9",
-        "symfony/symfony": "~2.6|~3.0",
+        "php": ">=7.1",
+        "symfony/symfony": "3.4.*",
         "gedmo/doctrine-extensions": "~2.0",
-        "doctrine/doctrine-fixtures-bundle": "~2.0",
+        "doctrine/doctrine-fixtures-bundle": "~3.2",
         "aboutcoders/file-distribution": "~1.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4",
+        "phpunit/phpunit": "~8",
         "symfony/monolog-bundle": "~2",
-        "doctrine/orm": "~2.2,>=2.2.3",
-        "doctrine/doctrine-bundle": "~1.2"
+        "doctrine/orm": "^2.5",
+        "doctrine/doctrine-bundle": "^1.6"
     },
     "autoload": {
         "psr-4": { "Abc\\Bundle\\FileDistributionBundle\\": "" }

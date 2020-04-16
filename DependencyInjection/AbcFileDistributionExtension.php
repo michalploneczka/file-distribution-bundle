@@ -3,13 +3,12 @@
 namespace Abc\Bundle\FileDistributionBundle\DependencyInjection;
 
 use Abc\File\Filesystem;
+use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Definition;
-use Symfony\Component\DependencyInjection\DefinitionDecorator;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
 /**
@@ -53,7 +52,7 @@ class AbcFileDistributionExtension extends Extension
             foreach ($config['filesystems'] as $name => $filesystem)
             {
                 $definitionId = 'abc.file_distribution.definition.' . $name;
-                $definition = new DefinitionDecorator('abc.file_distribution.definition.prototype');
+                $definition = new ChildDefinition('abc.file_distribution.definition.prototype');
                 $definition->addMethodCall('setType', array($filesystem['type']));
                 $definition->addMethodCall('setPath', array($filesystem['path']));
                 $definition->addMethodCall('setProperties', array($filesystem['options']));

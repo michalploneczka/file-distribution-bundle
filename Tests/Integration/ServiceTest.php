@@ -21,7 +21,7 @@ class ServiceTest extends KernelTestCase
     /**
      * {@inheritDoc}
      */
-    public function setUp()
+    protected function setUp(): void
     {
         self::bootKernel();
         $this->em = static::$kernel->getContainer()
